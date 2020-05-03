@@ -17,10 +17,13 @@ const timer = {
   },
   // Invoked when "Start" is clicked.
   startTimer: () {
-    // Checks which timer is active (A, B, or C) and starts that timer:
+    // Checks which timer is active (A, B, or C):
     switch(activeTimer) {
       case 'a':
-        timer.timerA();
+        // Only starts that timer if it isn't already running:
+        if (!aRunning) {
+          timer.timerA();
+        }
         break;
       case 'b':
         timer.timerB();
@@ -87,6 +90,7 @@ const timer = {
     // If none of the timers are running, it just performs the above actions once and then stops.
   },
   init: () => {
+    timer.updateDisplays(); // Show zeroes in all timers on pageload.
     // Add event listeners to all buttons. (-, +, Start, Stop/Clear, Radio Buttons.)
     // Add event listeners to timers A, B, and C (so user can click them to point the controls to them).
   }
